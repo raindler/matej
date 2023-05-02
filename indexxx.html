@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Matěj Růžička, xruzm024">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Zkouska</title>
+    <style>
+        :root {
+            --border-color: black;
+        }
+
+        header, .nav, #hlavni-obsah, footer {
+            font-size: 24px;
+            border: 2px var(--border-color) solid;
+            padding: 10px;
+        }
+
+        .logo {
+            display: none;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        body {
+            margin: 0;
+            text-align: center;
+        }
+
+        header {
+            background: lightseagreen;
+        }
+
+        .nav {
+            background: lightgreen;
+            overflow: hidden;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            width: auto;
+        }
+
+        .nav a {
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            display: block;
+            border: var(--border-color) 2px solid;
+            margin: 5px;
+        }
+
+        #hlavni-obsah {
+            background: lightblue;
+        }
+
+        #obrazek {
+            display: none;
+        }
+
+        footer {
+            background: lightcoral;
+            font-size: 16px;
+        }
+        footer a{
+            text-decoration: none;
+        }
+        footer ul{
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        footer ul li{
+            padding: 0 10px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        .nav #polozky {
+            display: none;
+        }
+
+        .obsah-formulare {
+            display: grid;
+            width: 100%;
+            font-size: 18px;
+        }
+
+        input {
+            display: grid;
+            margin: 5px 0;
+        }
+
+        /*500+36=536 (12051999)*/
+        @media (min-width: 536px) {
+
+            .logo {
+                display: block;
+            }
+
+            header {
+                display: flex;
+                align-items: center;
+            }
+
+            header h1 {
+                margin: 0 10px;
+            }
+
+            .nav {
+                position: relative;
+                right: 0;
+                bottom: 0;
+                width: auto;
+            }
+
+            .nav #polozky {
+                display: flex !important;
+                margin: 0 auto;
+                justify-content: center;
+            }
+
+            .fa {
+                display: none;
+            }
+
+            #obrazek {
+                display: block;
+                width: 250px;
+                margin: 0 10px;
+            }
+
+            #hlavni-obsah {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                justify-items: center;
+                align-items: center;
+            }
+            .formular {
+                width: 75%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <p class="logo">Logo</p>
+    <h1>Nadpis</h1>
+</header>
+<div class="nav">
+    <div id="polozky">
+        <a href="#" onmouseover="mouseOver()" onmouseout="mouseOut()">Menu 1</a>
+        <a href="#">Menu 2</a>
+        <a href="#">Menu 3</a>
+    </div>
+    <i class="fa fa-bars" onclick="hamburgerMenu()"></i>
+</div>
+<div id="hlavni-obsah">
+    <div class="formular">
+        Formulář
+        <div class="obsah-formulare">
+            <label for="jmeno">Jméno</label>
+            <input type="text" id="jmeno">
+            <label for="email">Email</label>
+            <input type="text" id="email">
+            <label for="cPojistence">Č. pojištěnce</label>
+            <input type="text" id="cPojistence">
+            <input type="submit" onclick="checkForm(jmeno.value, email.value, cPojistence.value)">
+        </div>
+    </div>
+    <div class="obrazek">
+        <img id="obrazek"
+             src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Banana-Single.jpg/800px-Banana-Single.jpg">
+    </div>
+</div>
+<footer>
+    <ul>
+        <li><a href="https://www.mzcr.cz">MZČR</a></li>
+        <li><a href="https://www.uzis.cz">UZIS</a></li>
+    </ul>
+    <p>Matěj Růžička, xruzm024</p>
+</footer>
+</body>
+<script>
+    //ověří, zda-li je email ve tvaru "text@text.text"
+    function validateEmail(email) {
+        let regex = /\S+@\S+\.\S+/;
+        if (regex.test(email)) {
+            console.log("Email je správně");
+        } else {
+            alert("Email musí být ve tvaru \"text@text.cz\"");
+        }
+    }
+
+    //ověří, zdali je vyplněné jméno ve tvaru "Text Text"
+    function validateName(name) {
+        let regex = /[A-Z]\w+\s[A-Z]\w+/;
+        if (regex.test(name)) {
+            console.log("Jméno je správně");
+        } else {
+            alert("Jméno musí být ve tvaru \"Text Text\"");
+        }
+    }
+
+    //ověří, zdali je vyplněné rodné číslo ve tvaru "000000/0000"
+    function validateRodneCislo(rodneCislo) {
+        let regex = /[0-9]{2}[0-9]{2}[0-9]{2}\/[0-9]{4}/;
+        if (regex.test(rodneCislo)) {
+            console.log("Rodné číslo je správně");
+        } else {
+            alert("Rodné číslo musí být ve tvaru \"000000/0000\"");
+        }
+    }
+
+    function checkForm(name, email, rodneCislo) {
+        validateName(name);
+        validateEmail(email);
+        validateRodneCislo(rodneCislo);
+    }
+
+    //změna barvy pozadí po najetí
+    function mouseOver() {
+        document.getElementById("hlavni-obsah").style.backgroundColor = "red";
+    }
+
+    function mouseOut() {
+        document.getElementById("hlavni-obsah").style.backgroundColor = "lightblue";
+    }
+
+    //otevirani a zavirani hamburger menu
+    function hamburgerMenu() {
+        let x = document.getElementById("polozky");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+    }
+</script>
+</html>
