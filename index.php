@@ -8,7 +8,7 @@
 	<h1>Objednej si Matěje</h1>
 
 	<?php
-	/*
+	
 	// Inicializace proměnných pro ukládání dat
 	$name = $email = $address = "";
 
@@ -26,7 +26,7 @@
 	  $data = htmlspecialchars($data);
 	  return $data;
 	}
-	*/
+	
 	?>
 
 	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
@@ -44,7 +44,7 @@
 	</form>
 
 	<?php
-	/*
+	
 	// Pokud byl formulář odeslán, vypišeme potvrzení
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		echo "<h2>Potvrzení objednávky:</h2>";
@@ -53,7 +53,7 @@
 		echo "<p>Adresa: " . $address . "</p>";
 		echo "<h3>Děkujeme že jste si objednali Matěje</h3>"
 	}
-	*/
+	
 	?>
 
 </body>
